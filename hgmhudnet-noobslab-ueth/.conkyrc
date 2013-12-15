@@ -1,0 +1,80 @@
+#==============================================================================
+#                            conkyrc_HUD
+#
+#  author  : SLK
+#  version : v2011011601
+#  license : Distributed under the terms of GNU GPL version 2 or later
+#
+#==============================================================================
+
+background yes
+update_interval 1
+
+cpu_avg_samples 2
+net_avg_samples 2
+temperature_unit celsius
+
+double_buffer yes
+no_buffers yes
+text_buffer_size 2048
+
+alignment tr
+gap_x 5
+gap_y 50
+minimum_size 400 130
+maximum_width 400
+own_window yes
+own_window_type conky
+own_window_transparent yes
+own_window_argb_visual yes
+own_window_hints undecorate,sticky,skip_taskbar,skip_pager,below
+border_inner_margin 0
+border_outer_margin 0
+
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders no
+
+override_utf8_locale yes
+use_xft yes
+xftfont caviar dreams:size=12
+xftalpha 0.5
+uppercase no
+
+default_color fcfcfc
+color1 222222
+color2 fcfcfc
+color3 555555
+color4 dcdcdc
+
+lua_load ~/.conky-themes/hgmhudnet-noobslab-ueth/.conky/conky_HUD.lua
+lua_draw_hook_post main
+
+TEXT
+
+${goto -20}${color3}${font Caviar Dreams:size=14}${time %b %e %Y}
+${voffset 0}
+${goto 170}${font Caviar Dreams:size=14,weight:bold}${color4}Disks
+${goto 170}${font Caviar Dreams:size=8,weight:normal}${color3} / (free)
+${goto 170}${font Caviar Dreams:size=10,weight:normal}${color3}${offset 5}${voffset -4}${fs_free /}
+${goto 170}${font Caviar Dreams:size=8,weight:normal}${color3} /home (free)
+${goto 170}${font Caviar Dreams:size=10,weight:normal}${color3}${offset 5}${voffset -4}${fs_free /home}
+
+${voffset -88}
+${goto 55}${font Caviar Dreams:size=13,weight:bold}${color4}Mem
+
+${voffset 0}
+${goto 280}${font Caviar Dreams:size=13,weight:bold}${color4}CPU
+
+
+${goto 0}${voffset -9}${font Poky:pixelsize=18}${font}${goto 30}${color3}${font Caviar Dreams:size=12}${color3}Battery: ${font}${color}${exec cat /sys/class/power_supply/BAT1/capacity}
+${voffset -220}${goto 140}${font Caviar Dreams:size=10}${color3}${alignr} Weather${font}
+${goto 190}${font Caviar Dreams:size=16,weight:bold}${color4}${alignr}${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ LFMT temperature temperature 30} °C${font}${color4}
+${voffset 195}${goto 280}${font Caviar Dreams:size=13,weight:bold}${color4}Net${color2}${voffset 2}${offset -1}
+
+${goto 100}${voffset -20}${font Neuropolitical:size=24}${time %H:%M:%S}
+${goto 100}${voffset -75}${font Neuropolitical:size=14}${color2}${time %A}#${color 222222}${hr}
+
+
+
