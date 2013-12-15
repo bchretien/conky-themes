@@ -1,0 +1,3 @@
+[submodule "ConkyInfinitySVG"]
+	path = ConkyInfinitySVG
+	url = https://github.com/bchretien/ConkyInfinitySVG.git
