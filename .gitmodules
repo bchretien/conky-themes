@@ -1,3 +1,6 @@
 [submodule "ConkyInfinitySVG"]
 	path = ConkyInfinitySVG
 	url = https://github.com/bchretien/ConkyInfinitySVG.git
+[submodule "BlackPearlConky"]
+	path = BlackPearlConky
+	url = https://github.com/bchretien/BlackPearlConky.git
