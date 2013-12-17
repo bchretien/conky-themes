@@ -1,0 +1,53 @@
+
+background yes
+update_interval 1
+
+cpu_avg_samples 2
+net_avg_samples 2
+temperature_unit celsius
+
+double_buffer yes
+no_buffers yes
+text_buffer_size 2048
+
+gap_x 50
+gap_y 50
+minimum_size 350 300
+maximum_width 350
+own_window yes
+#own_window_argb_visual yes
+own_window yes
+own_window_type override
+own_window_transparent yes
+own_window_hints undecorated,below,skip_taskbar,skip_pager,sticky
+border_inner_margin 0
+border_outer_margin 0
+alignment top_right
+
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders no
+
+override_utf8_locale yes
+use_xft yes
+xftfont Ubuntu:size=12
+xftalpha 0.5
+uppercase no
+
+default_color cccccc
+color1 00C9FF
+color2 FF8700
+color3 FF3939
+
+lua_load ~/.conky-themes/Universal/lua/ring.lua
+lua_draw_hook_pre ring_stats
+
+TEXT
+${font Digital\-7:size=20}${offset 98}${voffset 67}${time %H}:${time %M}$font
+${voffset -3}${hr 1}
+${offset 103}${voffset 1}$color1${time %d} ${time %b}$color
+${voffset -42}${goto 11}${font Ubuntu:size=7}TEMP/CPU${goto 204}SWAP/RAM
+${voffset 2}${goto 64}UP${goto 186}DOWN
+${goto 280}${voffset -27}${font Ubuntu:size=10}GMAIL  $color1${texeci 300 python2 ~/.conky-themes/scripts/mail/cache_gmail.py -n && echo `~/.conky-themes/scripts/mail/gmail_new.sh`}$color
+${goto 270}${voffset 2}UPDATE  $color1${if_existing /usr/bin/pacman}${texeci 6000 pacman -Qu | wc -l}$else${texeci 6000 /usr/bin/aptitude search "~U" | wc -l}$endif
