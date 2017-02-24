@@ -166,7 +166,16 @@ function conky_ring_stats()
 		local value=0
 
 		str=string.format('${%s %s}',pt['name'],pt['arg'])
-		str=conky_parse(str)
+
+		--to work with conky 1.10.1-3
+		if str=='${time %I.%M}' then
+                	str=conky_parse('${time %I}')+(conky_parse('${time %M}')/60)
+                elseif str=='${time %M.%S}' then
+            		str=conky_parse('${time %M}')+(conky_parse('${time %S}')/60)
+        	else
+            		str=conky_parse(str) 
+        	end
+		--end changes
 
 		value=tonumber(str)
 		if value == nil then value = 0 end
